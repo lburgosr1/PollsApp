@@ -43,10 +43,14 @@ app.get('/polls/polls', router.list);
 app.get('/polls/:id', router.poll);
 app.post('/polls', router.create);
 
-var server = app.listen(8080);
+var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', router.vote);
+
+server.listen(app.get('port'), function(){ 
+  console.log('Express server listening on port ' + app.get('port')); 
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,7 +61,7 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+  // set locals, only providing error in development 
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
