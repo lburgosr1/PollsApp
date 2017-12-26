@@ -43,14 +43,18 @@ app.get('/polls/polls', router.list);
 app.get('/polls/:id', router.poll);
 app.post('/polls', router.create);
 
-var server = http.createServer();
-var io = require('socket.io')(server);
+var server = http.createServer(app); 
+var io = require('socket.io').listen(server); 
 
-server.listen(8080, function(){
-	console.log('Servidor corriendo en http://18.217.82.107:8080');
+io.sockets.on('connection', routes.vote); 
+
+server.listen(app.get('port'), function(){ 
+	console.log('Express server listening on port ' + app.get('port')); 
 });
 
-io.sockets.on('connection', router.vote);
+/*var server = http.createServer(app);
+var io = require('socket.io')(server);
+io.sockets.on('connection', router.vote);*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
