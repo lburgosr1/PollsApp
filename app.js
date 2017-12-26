@@ -22,7 +22,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var app = express();
 
 // view engine setup
-app.set('port', process.env.PORT || 3000);
+//app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -43,7 +43,7 @@ app.get('/polls/polls', router.list);
 app.get('/polls/:id', router.poll);
 app.post('/polls', router.create);
 
-var server = http.createServer(app);
+var server = app.listen(8080);
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', router.vote);
