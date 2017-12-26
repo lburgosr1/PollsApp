@@ -43,8 +43,12 @@ app.get('/polls/polls', router.list);
 app.get('/polls/:id', router.poll);
 app.post('/polls', router.create);
 
-var server = http.createServer(app);
+var server = http.createServer();
 var io = require('socket.io')(server);
+
+server.listen(8080, function(){
+	console.log('Servidor corriendo en http://18.217.82.107:8080');
+});
 
 io.sockets.on('connection', router.vote);
 
