@@ -48,10 +48,6 @@ var io = require('socket.io')(server);
 
 io.sockets.on('connection', router.vote);
 
-server.listen(app.get('port'), function(){ 
-  console.log('Express server listening on port ' + app.get('port')); 
-});
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -70,4 +66,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-	module.exports = {app: app, server: server};
+module.exports = {app: app, server: server};
