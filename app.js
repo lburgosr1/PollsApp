@@ -8,11 +8,7 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var expressValidator = require('express-validator');
-var flash = require('connect-flash');
-var session = require('express-session');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+
 
 //var routes = require('./routes/router');
 //var users = require('./routes/users');
@@ -44,7 +40,7 @@ app.get('/polls/:id', router.poll);
 app.post('/polls', router.create);
 
 var server = http.createServer(app); 
-var io = require('socket.io').listen(server); 
+var io = require('socket.io')(server); 
 
 io.sockets.on('connection', routes.vote); 
 
