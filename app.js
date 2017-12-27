@@ -66,7 +66,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 if(!!module.parent){
-	module.exports = app;
+	module.exports = {app: app, server: server};
 }else{
 	app.listen(3000);
 }
