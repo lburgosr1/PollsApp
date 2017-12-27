@@ -11,7 +11,6 @@ module.exports.index = function(req, res) {
 };
 
 module.exports.list = function(req, res) { 
-	var question;
 	Poll.find({}, 'question', function(error, polls){ 
 		res.json(polls); 
 	}); 
