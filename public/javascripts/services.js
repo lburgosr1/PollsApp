@@ -6,7 +6,7 @@ angular.module('pollServices', ['ngResource'])
 		}) 
 	})
 	.factory('socket', function($rootScope) { 
-		var socket = io.connect('http: // 18.217.82.107'); 
+		var socket = io.connect('http://18.217.82.107'); 
 		return { 
 			on: function (eventName, callback) { 
 				socket.on(eventName, function () { 
