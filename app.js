@@ -42,11 +42,12 @@ app.post('/polls', router.create);
 var server = http.createServer(app); 
 var io = require('socket.io')(server); 
 
-io.sockets.on('connection', routes.vote); 
-
 server.listen(app.get('port'), function(){ 
 	console.log('Express server listening on port ' + app.get('port')); 
 });
+io.sockets.on('connection', routes.vote); 
+
+
 
 /*var server = http.createServer(app);
 var io = require('socket.io')(server);
