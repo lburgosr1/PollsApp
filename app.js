@@ -18,7 +18,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // view engine setup
-//app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -44,6 +44,10 @@ var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', router.vote);
 
+server(app.get('port'), function(){ 
+  console.log('Express server listening on port ' + app.get('port')); 
+});
+
 /*var server = http.createServer(app);
 var io = require('socket.io')(server);
 io.sockets.on('connection', router.vote);*/
@@ -65,10 +69,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-if(!!module.parent){
-	module.exports = {app: app, server: server};
-}else{
-	app.listen(3000);
-}
+
+module.exports = {app: app, server: server};
+
 
 	
