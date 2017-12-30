@@ -1,10 +1,9 @@
 {
-  "name": "suffragium",
+  "name": "PollsPro",
   "version": "1.0.0",
   "description": "Create polls quickly and watch the results change in real time!",
   "main": "app.js",
   "scripts": {
-    "prestart": "npm install bower install",
     "start": "node server/app.js",
     "dev": "nodemon server/app.js",
     "dev:debug": "DEBUG=*,-nodemon*,-send*, npm run dev",
@@ -16,8 +15,6 @@
     "poll",
     "survey"
   ],
-  "author": "jalbertsr",
-  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
     "chart.js": "^2.6.0",
