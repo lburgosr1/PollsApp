@@ -1,0 +1,26 @@
+{
+  "name": "QuestionPro",
+  "authors": [
+    "Luis Ml Burgos Romero"
+  ],
+  "description": "Cree encuestas rápidamente y vea los resultados cambiar en tiempo real!",
+  "main": "app.js",
+  "keywords": [
+    "poll",
+    "survey"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "materialize": "^0.100.1",
+    "jquery": "^3.2.1",
+    "font-awesome": "^4.7.0"
+  }
+}

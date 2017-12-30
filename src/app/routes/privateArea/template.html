@@ -1,0 +1,103 @@
+<div class="navbar-fixed">
+    <nav id="nav_f" class="default_color" role="navigation">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a ng-href="/" id="logo-container" class="brand-logo">PollsPro</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a ng-href="/">Inicio</a></li>
+                    <li><a ng-click="logout()" class="logout-click">Cerrar sesión</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a ng-href="/">Inicio</a></li>
+                    <li><a ng-click="logout()" class="logout-click">Cerrar sesión</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="container row create-poll">
+    <div class="col l6 offset-s2 s9">
+        <form class="form-register" name="poll" action="/privateArea/" method="POST" novalidate>
+            <input type="hidden" name="userID" value="{{userID}}">
+            <p class="title-create-style  create-poll-title">Crea tu encuesta</p>
+            <div class="input-field col s8">
+                <input class="input-border-color" id="question" ng-model="question" type="text" name="question" class="validate" required>
+                <label for="question">Escribe tu pregunta aqui</label>
+            </div>
+            <div class="input-field col s8">
+                <input class="input-border-color" id="option1" ng-model="option1" type="text" name="option1" required>
+                <label for="option1">Opción 1</label>
+            </div>
+            <div class="input-field col s8">
+                <input class="input-border-color" id="option2" ng-model="option2" type="text" name="option2" required>
+                <label for="option2">Opción 2</label>
+            </div>
+            <div class="add-margin  input-field col s8">
+                <span id="addOption" class="info-pointer"><i class="material-icons info-icon">Añadir</i><label class=" info-pointer label-add">Añadir otra opción</label></span>
+            </div>
+            <div class="add-margin input-field col s8">
+                <p>Permitir respuestas de encuesta múltiples:</p>
+                <div class="switch">
+                    <label class="multiple-vote-space">
+                        No
+                        <input type="checkbox" name="allowMoreThanOne">
+                        <span class="lever"></span> Si
+                    </label>
+                </div>
+            </div>
+            <div class="input-field duplicaton-top-space col s8 row">
+                <div class="select-duplication col s11">
+                    <select name="duplicationChecking">
+                        <option value="none" disabled selected>Elija la opción de verificación:</option>
+                        <option value="none">Sin comprobación de duplicación</option>
+                        <option value="login">Comprobación de duplicación de inicio de sesión</option>
+                    </select>
+                </div>
+                <div class="col s1">
+                    <span id="info-activate" class="info-pointer">
+                        <a><i class="material-icons info-icon">info_outline</i></a>
+                    </span>
+                </div>
+            </div>
+            <div class="select-duplication col s8">
+                <button onclick="Materialize.toast('Poll created!', 2000)" ng-disabled="form-poll.$invalid || form-register.$pending" class="btn voted btn-poll">Crear encuesta
+                    <i class="material-icons right">enviar</i>
+                </button>
+            </div>
+        </form>
+        <!-- begin info modal -->
+        <div id="info-modal" class="modal">
+            <div class="modal-content">
+                <h4 class="modal-title">Información de comprobación de duplicación</h4>
+                <p><strong>Comprobación de la duplicación de cookies del navegador</strong> - los votos duplicados no se permitirán según el navegador del usuario, lo que permite múltiples votos desde la misma dirección IP. Esta comprobación se realiza de manera predeterminada.</p>
+                <p><strong>Exigir que el usuario inicie sesión para votar </ strong>: no se permite la votación a menos que el votante haya iniciado sesión en su cuenta de Suffragium.</p>
+                <p><strong>Sin comprobación de duplicación </ strong>: la comprobación de la duplicación se desactivará y los usuarios podrán votar tantas veces como deseen.</p>
+            </div>
+            <div class="modal-footer">
+                <span><a id="btnClose" class="modal-action btn-flat">Ok</a></span>
+            </div>
+        </div>
+        <!-- end info modal -->
+    </div>
+    <!-- begin my polls -->
+    <div class="col l5 offset-l1 offset-s2 s9">
+        <p class="title-create-style owned-polls"> Mis encuestas </p>
+        <div class="personal-polls row" ng-repeat="poll in userPolls" id="{{poll.uid._id}}">
+            <a href="#!/poll/{{poll.uid._id}}">
+                <p class="question-own-poll">{{poll.uid.question}}</p>
+            </a>
+            <div class="switch col l8 s8">
+                <label>
+                    Close
+                    <input type="checkbox" ng-change="updateStatus(poll.uid)" ng-model="poll.uid.pollInfo.status" ng-checked="{{poll.uid.pollInfo.status}}">
+                    <span class="lever"></span> Abrir
+                </label>
+            </div>
+            <div class="col l4 s4" ng-click="deletePoll($event)">
+                <span class="info-icon info-pointer"><i class="material-icons">eliminar</i></span>
+            </div>
+        </div>
+    </div>
+    <!-- end my polls -->
+</div>

@@ -1,0 +1,126 @@
+<body id="top" class="scrollspy">
+    <!-- Pre Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- logged navigation -->
+    <div ng-if="loggedUser" class="navbar-fixed">
+        <nav id="nav_f" class="default_color" role="navigation">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a ng-href="/" id="logo-container" class="brand-logo">PollsPro</a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a ng-href="#!/username/{{idUser}}">Cuenta</a></li>
+                        <li><a ng-click="logout()" class="logout-click">Cerrar sesión</a></li>
+                    </ul>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li><a ng-href="#!/username/{{idUser}}">Cuenta</a></li>
+                        <li><a ng-click="logout()" class="logout-click">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--Not logged Navigation-->
+    <div ng-if="!loggedUser" class="navbar-fixed">
+        <nav id="nav_f" class="default_color" role="navigation">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a ng-href="/" id="logo-container" class="brand-logo">PollsPro</a>
+                    <a data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a ng-href="#!/register">Registro</a></li>
+                        <li><a ng-href="#!/login">Iniciar sesión</a></li>
+                    </ul>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li><a ng-href="#!/register">Registro</a></li>
+                        <li><a ng-href="#!/login">Iniciar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--Intro and service-->
+    <div id="intro" class="section scrollspy">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 principal-btn">
+                    <h2 class="center header text_h2"> Crea tu <span class="span_h2"> encuesta </span>¡y obtén resultados al instante! ¡Visualiza datos de una manera que nunca antes has hecho! <span class="span_h2">Crea tu encuesta ahora!</span></h2>
+                    <!-- not logged - go register -->
+                    <a ng-if="!loggedUser" ng-href="#!/register">
+                        <button class="btn voted" name="action">Crear Encuesta
+                            <i class="material-icons right">chevron_right</i>
+                        </button>
+                    </a>
+                    <!-- logged - go create -->
+                    <a ng-if="loggedUser" ng-href="#!/username/{{idUser}}">
+                        <button class="btn voted" name="action">Crear Encuesta
+                            <i class="material-icons right">chevron_right</i>
+                        </button>
+                    </a>
+                </div>
+                <div class="col s12 m4 l4">
+                    <div class="center promo promo-example">
+                        <i class="mdi-image-flash-on"></i>
+                        <h5 class="promo-caption">Acelera las decisiones</h5>
+                        <p class="light center">¿Tiene una pregunta y necesita resultados rápidos? Obtenga la opinión de la gente y tome una decisión rápida! </p>
+                    </div>
+                </div>
+                <div class="col s12 m4 l4">
+                    <div class="center promo promo-example">
+                        <i class="mdi-social-group"></i>
+                        <h5 class="promo-caption">Experiencia de usuario enfocada</h5>
+                        <p class="light center">Fácil de usar, sensible y simple visualización de datos sobre los resultados de la encuesta.</p>
+                    </div>
+                </div>
+                <div class="col s12 m4 l4">
+                    <div class="center promo promo-example">
+                        <i class="mdi-hardware-desktop-windows"></i>
+                        <h5 class="promo-caption">Verificación de votos duplicados </h5>
+                        <ul class="light center">
+                            <li>Comprobación de la duplicación del navegador de cookies</li>
+                            <li>Comprobación de duplicación de inicio de sesión</li>
+                            <li>Comprobación de Duplicación IP</li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Card Polls-->
+    <div class="section scrollspy" id="work">
+        <div class="container">
+            <h2 class="header text_b">Encuesta</h2>
+            <div class="row">
+                <div class="col s12 m4 l4" ng-repeat="poll in polls">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <a href="#!/poll/{{poll._id}}"><img class="thumbnail-card" ng-src="{{poll.imgBase64}}"></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="title-nowrap card-title activator grey-text text-darken-4">{{poll.question}}</span>
+                            <p><a href="#!/poll/{{poll._id}}">Ir a votar</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{poll.question}}<i class="mdi-navigation-close right"></i></span>
+                            <p>Opciones de voto:</p>
+                            <p ng-repeat="option in poll.options">{{option.option}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="contact" class="page-footer default_color scrollspy">
+        <div class="footer-copyright default_color">
+            <div class="container">
+                <p> Hecho Por Luis Ml Burgos Romero<br/>
+                    Cel.: 809-433-0065
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
