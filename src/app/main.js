@@ -26,7 +26,7 @@ const ChartService = require('./services/ChartService')
 const interceptor = require('./interceptor/interceptor')
 const run = require('./run/run')
 
-angular.module('suffragium', [angularRoute, angularjwt])
+angular.module('pollspro', [angularRoute, angularjwt])
   .run(run)
   .controller('homeController', homeController)
   .controller('privateAreaController', privateAreaController)
