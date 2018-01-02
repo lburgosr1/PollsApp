@@ -10,7 +10,7 @@ const handleGetPolls = (req, res) => {
     })
     .catch((err) => {
       console.error('poll find error', err)
-      res.send(`FAIL to find most voted polls`)
+      res.send(`FALLA para encontrar las encuestas más votadas`)
     })
 }
 
